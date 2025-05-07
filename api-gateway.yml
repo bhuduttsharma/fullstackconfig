@@ -4,18 +4,39 @@ server:
 spring:
   application:
     name: api-gateway
-
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
       routes:
-        - id: auth
-          uri: lb://auth-service
-          predicates:
-            - Path=/api/auth/**
-        - id: user
+        - id: user-service
           uri: lb://user-service
           predicates:
-            - Path=/api/user/**
+            - Path=/users/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 20
+            - name: CircuitBreaker
+              args:
+                name: userServiceCircuitBreaker
+                fallbackUri: forward:/fallback/users
+        - id: auth-service
+                  uri: lb://auth-service
+                  predicates:
+                    - Path=/auth/**
+                  filters:
+                    - name: RequestRateLimiter
+                      args:
+                        redis-rate-limiter.replenishRate: 10
+                        redis-rate-limiter.burstCapacity: 20
+                    - name: CircuitBreaker
+                      args:
+                        name: userServiceCircuitBreaker
+                        fallbackUri: forward:/fallback/users
 
 eureka:
   client:
