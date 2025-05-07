@@ -24,24 +24,24 @@ spring:
               args:
                 name: userServiceCircuitBreaker
                 fallbackUri: forward:/fallback/users
-         - id: auth-service
-           uri: lb://auth-service
-           predicates:
-              - Path=/auth/**
-            filters:
-              - name: RequestRateLimiter
-                args:
-                  redis-rate-limiter.replenishRate: 10
-                  redis-rate-limiter.burstCapacity: 20
-              - name: CircuitBreaker
-                args:
-                  name: userServiceCircuitBreaker
-                  fallbackUri: forward:/fallback/users 
+
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/auth/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 20
+            - name: CircuitBreaker
+              args:
+                name: authServiceCircuitBreaker
+                fallbackUri: forward:/fallback/auth
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
-
   instance:
     prefer-ip-address: true
