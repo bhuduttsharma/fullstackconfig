@@ -8,15 +8,14 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: employee-service
-          uri: lb://employee-service
+        - id: auth
+          uri: lb://auth-service
           predicates:
-            - Path=/employee/**
-
-        - id: leave-service
-          uri: lb://leave-service
+            - Path=/api/auth/**
+        - id: user
+          uri: lb://user-service
           predicates:
-            - Path=/leave/**
+            - Path=/api/user/**
 
 eureka:
   client:
