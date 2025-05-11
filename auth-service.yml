@@ -25,5 +25,5 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
 jwt:
-  secret: mysecretkey1234567890
-  expirationMs: 3600000    
+  secret: my-very-secure-jwt-secret-key-which-is-long-enough
+  expirationMs: 3600000 
