@@ -68,6 +68,10 @@ app:
     baseUrl: http://localhost:8081/
   oauth2:
     authorizedRedirectUris: http://localhost:8081/oauth2/redirect,myandroidapp://oauth2/redirect,myiosapp://oauth2/redirect
+    defaultRedirectUrl: http://localhost:4200/oauth2/redirect
+  auth:
+    tokenSecret: j4W/RwddjfVCE01lqfpiwq8d0FAmQsSGaYD6uoo/A2MgX2DvojqAcOe/yiWizSDUXZsxDXI2aAZzbP3VaUs4MQ==
+    tokenExpirationMsec: 864000000    
 server:
   port: '8084'
 gateway:
