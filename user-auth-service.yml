@@ -60,7 +60,7 @@ spring:
     username: root
     url: jdbc:mysql://localhost:3306/demo2fa?createDatabaseIfNotExist=true
   config:
-    import: configserver:http://localhost:8888
+    #import: configserver:http://localhost:8888
   application:
     name: user-auth-service
 app:
