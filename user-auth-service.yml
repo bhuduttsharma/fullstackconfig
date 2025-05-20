@@ -58,7 +58,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: secret
     username: root
-    url: jdbc:mysql://localhost:3306/demo?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/demo2fa?createDatabaseIfNotExist=true
   config:
     import: configserver:http://localhost:8888
   application:
