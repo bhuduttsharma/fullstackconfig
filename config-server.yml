@@ -4,4 +4,8 @@ server:
 spring:
   application:
     name: config-server
+app: 
+  auth: 
+    tokenSecret: j4W/RwddjfVCE01lqfpiwq8d0FAmQsSGaYD6uoo/A2MgX2DvojqAcOe/yiWizSDUXZsxDXI2aAZzbP3VaUs4MQ==
+    tokenExpirationMsec: 864000000    
    
